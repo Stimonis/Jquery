@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    .div {
+      height: 130px;
+    }
+
+    h3 {
+      font-weight: bold;S
+    }
+
+    .petitCarre {
+      width: 100px;
+      height: 100px;
+      border: 1px solid lightgrey;
+      margin-left: 60px;
+    }
+
+    .div4 {
+      margin-bottom: 15px;
+    }
+
+    .grandCarre {
+      height: 400px;
+      width: 400px;
+      border: 2px solid grey;
+    }
+
+    .carreMobile {
+      width: 25px;
+      height: 25px;
+      background-color: darkblue;
+      border: 1px solid black;
+      position: relative;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="div1 div">
+
+    <h3>exercice 1 :</h3>
+
+  </div>
+
+  <div class="div2 div">
+
+    <h3>exercice 2 :</h3>
+
+  </div>
+
+  <div class="div3 div">
+
+    <h3>exercice 3 :</h3>
+
+    <input type="number" placeholder="number between 0 and 100" id="proposition">
+
+    <input type="submit" id="button3">
+    <br>
+    <p class="ajoutP"></p>
+
+  </div>
+
+  <div class="div4">
+
+    <h3>exercice 4 :</h3>
+    <div class="petitCarre">  </div>
+    <br>
+
+  </div>
+
+  <div class="div5 div">
+
+    <h3>exercice 5 :</h3>
+
+    <div class="grandCarre"> </div>
+
+  <br><br><br>
+
+  </div>
+
+
+
+  <script type="text/javascript" src="jquery-2.2.4.js"></script>
+  <script type="text/javascript">
+
+    // ex 1
+
+    $(".div1").append("<button id = bouton>+</button>");
+    $(".div1").append("<p>nbre de click : <span class=num></span></p>");
+    var counter = 0;
+    $("#bouton").click(function() {
+      $(".num").text(++ counter);
+    })
+
+    // ex 2
+
+    $(".div2").append("<button id = boutonPlus>+</button>");
+    $(".div2").append("<button id = boutonMoins>-</button>");
+    $(".div2").append("<p>nbre de click : <span class=num2></span></p>")
+    var counter2 = 0;
+
+    $("#boutonPlus").click(function() {
+      $(".num2").text(++ counter2);
+    })
+
+    $("#boutonMoins").click(function() {
+      $(".num2").text(-- counter2);
+    })
+
+    // ex 3
+
+    let nombreAleatoire = Math.floor(Math.random() *100);
+    // console.log(nombreAleatoire);
+    let essai = 0;
+    let sortie = true;
+
+      $("#button3").click(function() {
+          if ( $("#proposition").val() > nombreAleatoire ) {
+            $(".ajoutP").text("c'est plus petit");
+            essai++;
+          } else if ( $("#proposition").val() < nombreAleatoire ) {
+            $(".ajoutP").text("c'est plus grand");
+            essai++;
+          } else {
+            essai++;
+            $('#button3').attr("disabled", "true");                          // !!!!!!!!!!!!!! pour que le bouton ne soit plus réutilisable
+            $(".ajoutP").hide();
+            $(".div3").append("<p>Correct, vous avez trouvé en " + essai + " essai(s) </p>");
+          }
+    });
+
+    //ex 4
+
+    $(".div4").append("<button id = boutonSizePlus>Size</button>");
+    $(".div4").append("<button id = boutonGreen>Green</button>");
+    $(".div4").append("<button id = boutonReset>Reset</button>");
+    $(".div4").append("<button id = boutonHide>Hide</button>");
+    $(".div4").append("<button id = boutonShow>Show</button>");
+
+    $("#boutonSizePlus").click(function() {
+      if ($(".petitCarre").height() < 200) {
+        $(".petitCarre").height(function(c, d) {
+          c = $(".petitCarre").height();
+          return (c + 10);
+        })
+      } else {
+        $(".petitCarre").height(function(c) {
+          c = 100;
+          return c;
+        })
+      }
+    })
+
+    $("#boutonGreen").click(function() {
+      $(".petitCarre").css("backgroundColor", "green");
+    })
+
+    $("#boutonReset").click(function() {
+      $(".petitCarre").css("backgroundColor", "white");
+    })
+
+    $("#boutonHide").click(function() {
+      $(".petitCarre").css("visibility", "hidden");
+    })
+
+    $("#boutonShow").click(function() {
+      $(".petitCarre").css("visibility", "visible");
+    })
+
+
+    // ex 5
+
+    $(".grandCarre").append("<div class=carreMobile>");
+
+    $("body").keyup(function(event) {
+      let keyName = event.keyCode;
+      switch (keyName) {
+        case 39 :
+        if ($(".carreMobile").css("left") === "375px" ) {
+              $(".carreMobile").css("left", "0");
+            } else {
+              $(".carreMobile").finish().animate({
+              left: "+=25"
+            },100)
+          };
+          break;
+
+        case 40 :
+          if ( $(".carreMobile").css("top") ===  "375px" ) {
+            $(".carreMobile").css("top", "0");
+          } else {
+            $(".carreMobile").finish().animate({
+              top: "+=25"
+            },100)
+          };
+
+          break;
+
+        case 37 :
+          if ( $(".carreMobile").css("left") === "0px" ) {
+            $(".carreMobile").css("left", "375px");
+          } else {
+            $(".carreMobile").finish().animate({
+              left: "-=25"
+            },100)
+          };
+          break;
+
+        case 38 :
+        if ( $(".carreMobile").css("top") ===  "0px" ) {
+          $(".carreMobile").css("top", "375px");
+        } else{
+          $(".carreMobile").finish().animate({
+            top: "-=25"
+          });
+        }
+          break;
+      }
+    })
+
+
+
+</script>
+</body>
+</html>

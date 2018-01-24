@@ -1,0 +1,41 @@
+/* * {
+  border: 1px solid lightgrey;
+} */
+
+/* body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
+
+.statut {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  padding-bottom: 25px;
+}
+
+.shifumi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.div {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
